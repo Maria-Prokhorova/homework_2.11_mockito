@@ -1,7 +1,9 @@
 package pro.sky.homework_2._EmployeeBook.service;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import pro.sky.homework_2._EmployeeBook.domain.Employee;
+import pro.sky.homework_2._EmployeeBook.exception.ValidataException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,6 +32,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public String addEmployee(String firstName, String lastName, String departmentId, int salary) {
+        validataInput(firstName, lastName);
+
         String key = lastName + " " + firstName;
         if (employeeMap.containsKey(key)) {
             return "Такой сотрудник уже есть";
@@ -42,6 +46,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void removeEmployee(String firstName, String lastName) {
+        validataInput(firstName, lastName);
+
         String key = lastName + " " + firstName;
         if (employeeMap.containsKey(key)) {
             employeeMap.remove(key);
@@ -50,6 +56,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public String findEmployee(String firstName, String lastName) {
+        validataInput(firstName, lastName);
+
         String key = lastName + " " + firstName;
         if (employeeMap.containsKey(key)) {
             return employeeMap.get(key).getFirstName() + " " + employeeMap.get(key).getLastName();
@@ -65,5 +73,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 
         return new ArrayList<>(employeeMap.values());
+    }
+
+    private void validataInput (String firstName, String lastName)
+    {
+        if (!(StringUtils.isAlpha(firstName) && StringUtils.isAlpha(lastName))
+        {
+            throw new ValidataException();
+        }
     }
 }
