@@ -77,7 +77,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     private void validataInput (String firstName, String lastName)
     {
-        if (!(StringUtils.isAlpha(firstName) && StringUtils.isAlpha(lastName))
+        if (!(StringUtils.isAlpha(firstName) && StringUtils.isAlpha(lastName)))
         {
             throw new ValidataException();
         }
