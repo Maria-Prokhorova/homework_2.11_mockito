@@ -7,9 +7,11 @@ import pro.sky.homework_2._EmployeeBook.domain.Employee;
 import pro.sky.homework_2._EmployeeBook.service.EmployeeService;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class EmployeeController {
+
     private final EmployeeService employeeService;
 
     public EmployeeController(EmployeeService employeeService) {
@@ -41,8 +43,15 @@ public class EmployeeController {
         return employeeService.findEmployee(firstName, lastName);
     }
 
+
     @GetMapping(path = "/getAll")
     public List<Employee> getAllEmployee() {
         return employeeService.getAllEmployee();
     }
+
+    /*
+    @GetMapping(path = "/getAllWithDep")
+    public List<String> getAllEmployeesWithNameDepartments() {
+        return employeeService.getAllEmployeesWithNameDepartments();
+    }*/
 }
