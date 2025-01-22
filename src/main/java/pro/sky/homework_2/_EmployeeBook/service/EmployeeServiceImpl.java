@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -17,17 +16,17 @@ public class EmployeeServiceImpl implements EmployeeService {
             "Prokhorova Maria",
             new Employee("Maria", "Prokhorova", "1", 95000),
             "Ivanov Ivan",
-            new Employee("Ivan", "Ivanov", "1", 95000),
+            new Employee("Ivan", "Ivanov", "1", 15000),
             "Petrov Petr",
             new Employee("Petr", "Petrov", "2", 59000)
     ));
 
     Map<String, String> professions = new HashMap<>(Map.of(
-            "1", "административный отдел",
-            "2", "хозяйственный отдел",
-            "3", "бухгалтерия",
-            "4", "юридический отдел",
-            "5", "руководство"
+            "1", "administrativnii otdel",
+            "2", "hozaistvennii otdel",
+            "3", "bukhalteria",
+            "4", "iuridicheskii otdel",
+            "5", "rukovodstvo"
     ));
 
     @Override
@@ -66,19 +65,19 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<Employee> getAllEmployee() {
-        List<Employee> newEmployees = new ArrayList<>();
-        employeeMap.entrySet().stream()
-                .map(employeeMap -> employeeMap.getValue().getFirstName() + " " + employeeMap.getValue().getLastName() + " " + employeeMap.getValue().getSalary() + " "+professions.get(employeeMap.getValue().getDepartment()))
-                .collect(Collectors.toList());
-
-
         return new ArrayList<>(employeeMap.values());
     }
 
-    private void validataInput (String firstName, String lastName)
-    {
-        if (!(StringUtils.isAlpha(firstName) && StringUtils.isAlpha(lastName)))
-        {
+    /*
+    @Override
+    public List<String> getAllEmployeesWithNameDepartments() {
+        return employeeMap.entrySet().stream()
+                .map(employeeMap -> employeeMap.getValue().getFirstName() + " " + employeeMap.getValue().getLastName() + " " + employeeMap.getValue().getSalary() + " " + professions.get(employeeMap.getValue().getDepartment()))
+                .collect(Collectors.toList());
+    }*/
+
+    private void validataInput(String firstName, String lastName) {
+        if (!(StringUtils.isAlpha(firstName) && StringUtils.isAlpha(lastName))) {
             throw new ValidataException();
         }
     }

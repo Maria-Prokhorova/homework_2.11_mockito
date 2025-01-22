@@ -1,7 +1,6 @@
 package pro.sky.homework_2._EmployeeBook.service;
 
 import pro.sky.homework_2._EmployeeBook.domain.Employee;
-
 import java.util.List;
 
 public interface EmployeeService {
@@ -13,4 +12,6 @@ public interface EmployeeService {
     String findEmployee(String firstName, String lastName);
 
     List<Employee> getAllEmployee();
+
+    //List<String> getAllEmployeesWithNameDepartments();
 }
